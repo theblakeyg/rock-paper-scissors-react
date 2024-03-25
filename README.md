@@ -1,2 +1,2 @@
-# rock-paper-scissors-react
-Rock Paper Scissors using React
+# Rock Paper Scissors using React
+Also practicing styling react components with CSS Modules
