@@ -1,10 +1,34 @@
 import React, { useState } from "react";
+import styles from "./Game.module.css";
 
 const CHOICES = [
   { name: "rock", emoji: "✊" },
   { name: "paper", emoji: "✋" },
   { name: "scissors", emoji: "✌️" },
 ];
+
+const choiceStyle = {
+  display: "flex",
+  align: "center",
+  marginBottom: 40,
+};
+
+const emojiStyles = {
+  fontSize: 64,
+  marginRight: 20,
+};
+
+const nameStyles = {
+  margin: 0,
+  fontSize: 24,
+  fontColor: "#ffff",
+};
+
+const resultStyle = {
+  marginTop: 40,
+  fontSize: 48,
+  fontColor: "#ffff",
+};
 
 function Game() {
   const [playerChoice, setPlayerChoice] = useState(null);
@@ -36,10 +60,11 @@ function Game() {
 
   return (
     <div>
-      <h1>Rock Paper Scissors</h1>
-      <div>
+      <h1 className={styles.container}>Rock Paper Scissors</h1>
+      <div className={styles.choices}>
         {CHOICES.map((choice) => (
           <button
+            className={styles.button}
             key={choice.name}
             onClick={() => handlePlayerChoice(choice)}
             aria-label={choice.name}
@@ -49,17 +74,19 @@ function Game() {
         ))}
       </div>
       {playerChoice && codeyChoice && (
-        <div>
-          <div>
-            <span>{playerChoice.emoji}</span>
-            <p>You chose {playerChoice.name}</p>
+        <div className={styles.results}>
+          <div style={choiceStyle}>
+            <span style={emojiStyles}>{playerChoice.emoji}</span>
+            <p style={nameStyles}>You chose {playerChoice.name}</p>
           </div>
-          <div>
-            <span>{codeyChoice.emoji}</span>
-            <p>The computer chose {codeyChoice.name}</p>
+          <div style={choiceStyle}>
+            <span style={emojiStyles}>{codeyChoice.emoji}</span>
+            <p style={nameStyles}>The computer chose {codeyChoice.name}</p>
           </div>
-          <h2>{result}</h2>
-          <button onClick={resetGame}>Play again</button>
+          <h2 style={resultStyle}>{result}</h2>
+          <button className={styles.button} onClick={resetGame}>
+            Play again
+          </button>
         </div>
       )}
     </div>
